@@ -94,8 +94,7 @@ public class Vehicle implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Vehicle [idvehicle=" + idvehicle + ", vehiclemodel=" + vehiclemodel + ", vehicleplate=" + vehicleplate
-				+ ", client=" + client.getName() + "]";
+		return "[" + "ID[" + idvehicle + "] Modelo[" + vehiclemodel + "] Matricula[" + vehicleplate + "]";
 	}
 
 }

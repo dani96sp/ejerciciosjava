@@ -84,10 +84,15 @@ public class Booking implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Reserva a fecha " + bookingdate + " , del cliente=" + client.getName() + " , para la plaza " + parkingplace.getParkingnumber()
-				+ ", y el vehiculo con matricula " + vehicle.getVehicleplate() + "]";
+		return "[" + bookingdate + "] Plaza[" + parkingplace.getParkingnumber()
+				+ "] Vehiculo[" + vehicle.getVehicleplate() + "]";
 	}
 	
-	
+	public String toTable() {
+		return "</td></tr><tr><td>" + bookingdate + " </td><td>" + client.getName() + "</td><td> " + parkingplace.getParkingnumber()
+				+ "</td><td>" + vehicle.getVehicleplate() + "</td><td>"  + "<a href='dispatcher2?idReserva="+this.getIdbooking()+"'><button>MODIFICAR</button></a>"
+				+ "</td><td>"  + "<a href='dispatcher2?idReserva="+this.getIdbooking()+"'><button>ELIMINAR</button></a>";
+
+	}
 
 }

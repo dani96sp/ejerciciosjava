@@ -22,7 +22,8 @@ import com.everis.alicante.becajava.garage.controller.ControladorGarajeImpl;
 import com.everis.alicante.becajava.garage.GarageMain;
 
 public class Dispatcher extends HttpServlet{
-
+	static int option;
+	static int idReserva;
 	/**
 	 * 
 	 */
@@ -39,8 +40,8 @@ public class Dispatcher extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
-		int option=Integer.parseInt(req.getParameter("option"));
-		
+		option=Integer.parseInt(req.getParameter("option"));
+
 		System.out.println("##option"+ option);
 		
 		ControladorGaraje controlador= new ControladorGarajeImpl();
@@ -51,6 +52,12 @@ public class Dispatcher extends HttpServlet{
 			req.setAttribute("plazas", plazas);	
 			RequestDispatcher dispatcher = req.getRequestDispatcher("listadoPlazas.jsp");
 			dispatcher.forward(req, resp);
+			break;
+		case 2:	
+			List<Parkingplace> plazasOcup = controlador.listarPlazasOcupadas();		
+			req.setAttribute("plazasOcup", plazasOcup);	
+			RequestDispatcher dispatcher2 = req.getRequestDispatcher("listadoPlazasOcup.jsp");
+			dispatcher2.forward(req, resp);
 			break;
 		
 		case 3 :
@@ -63,8 +70,8 @@ public class Dispatcher extends HttpServlet{
 			req.setAttribute("plazas", plazasLibres);	
 			req.setAttribute("coches", coches);
 			
-			RequestDispatcher dispatcher2 = req.getRequestDispatcher("altaReserva.jsp");
-			dispatcher2.forward(req, resp);
+			RequestDispatcher dispatcher3 = req.getRequestDispatcher("altaReserva.jsp");
+			dispatcher3.forward(req, resp);
 
 		case 4:
 			List<Client> clients = controlador.listarClientes();
@@ -74,10 +81,10 @@ public class Dispatcher extends HttpServlet{
 			break;
 			
 		case 5 :
-			List<Booking> reservas=controlador.listarReservas();			
+			List<Booking> reservas=controlador.listarReservas();
 			req.setAttribute("reservas", reservas);			
-			RequestDispatcher dispatcher3 = req.getRequestDispatcher("listadoReservas.jsp");
-			dispatcher3.forward(req, resp);
+			RequestDispatcher dispatcher5 = req.getRequestDispatcher("listadoReservas.jsp");
+			dispatcher5.forward(req, resp);
 			
 			break;
 
@@ -97,16 +104,22 @@ public class Dispatcher extends HttpServlet{
 			break;
 		}
 		
+		
+		if (idReserva != 0) {
+			
+			Booking reserva=controlador.listarReserva(idReserva);
+			req.setAttribute("reserva", reserva);			
+			
+			RequestDispatcher dispatcher = req.getRequestDispatcher("editarReserva.jsp");
+			dispatcher.forward(req, resp);
+		}
 	
 		
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		String tipo=req.getParameter("tipo");
-		
-		if (tipo.equals("reservar")) {
+		if (option==3) {
 		//alta de reservas
 		
 		String name=req.getParameter("name");
@@ -139,7 +152,7 @@ public class Dispatcher extends HttpServlet{
 		
 		}
 		
-		else {
+		if (option==7) {
 			//listado de reservas por fecha
 			ControladorGaraje controlador= new ControladorGarajeImpl();
 
@@ -152,11 +165,7 @@ public class Dispatcher extends HttpServlet{
 			req.setAttribute("reservasByFecha", reservasByFecha);	
 			
 			RequestDispatcher dispatcher7 = req.getRequestDispatcher("listadoReservasByFechaListar.jsp");
-//			List<Booking> reservas = (List) request.getAttribute("reservasByFecha");
-					 	
-			for(Booking reserva: reservasByFecha){
-		    	System.out.println(reserva);
-		    }
+
 			dispatcher7.forward(req, resp);
 			
 		}

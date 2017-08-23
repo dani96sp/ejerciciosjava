@@ -13,30 +13,44 @@
 </head>
 <body>
 	
-	<h1>LISTA DE RESERVAS </h1>
+	LISTA DE PLAZAS </br>
 	 
-	<%	List<Booking> reservas = (List) request.getAttribute("reservas");
+	<%	List<Parkingplace> plazas = (List) request.getAttribute("plazasOcup");
+	
+	 	out.println("<br/>");
+		for(Parkingplace plaza: plazas){
+	    	out.println(plaza + "<br/>");
+	    }
+    
      %>
-<div>
 
 	<table border="true">
-	<tr id='titulo'>
-	<td><b>Fecha Reserva</b></td>
-	<td><b>Cliente</b></td>
-	<td><b>Plaza</b></td>
-	<td><b>Vehículo</b></td>
-	<td id='modificar'><b>Modificar</b></td>
-	<td id='eliminar'><b>Eliminar</b></td>
-	  <% 
-		for(Booking reserva: reservas){
+	  <% out.println("<br/>");
+	 	
+		out.print("<tr>");
+		for(Parkingplace plaza: plazas){
 		
-	    	out.println(reserva.toTable());
+	    	out.println("<td>"+plaza  + "</td>");
 	    }
+		out.print("</tr>");
 		
 		%>
-		
-	</td></tr>
 	</table>
+	
+	<!-- Ahora con taglibs --> 
+	
+	</br>
+	</br>
+	
+	<div>
+	
+	<c:forEach items="${plazas}" var="plaza">
+	
+		<c:out value="${plaza}"></c:out>
+		</br>
+	
+	</c:forEach>
+	
 	</div>
 	
 </body>

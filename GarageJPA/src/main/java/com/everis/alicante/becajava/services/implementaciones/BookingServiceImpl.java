@@ -1,11 +1,16 @@
 package com.everis.alicante.becajava.services.implementaciones;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import org.hibernate.mapping.Collection;
 
 import com.everis.alicante.becajava.domain.Booking;
 import com.everis.alicante.becajava.interfaces.BookingDAO;
 import com.everis.alicante.becajava.services.BookingService;
+
 
 
 public class BookingServiceImpl implements BookingService {
@@ -27,11 +32,8 @@ public class BookingServiceImpl implements BookingService {
 	}
 
 	@Override
-	public Booking findBooking(String field) {
-		
-		//lo implemementaremos luego
-		
-		return null;
+	public Booking findBookingById(int idBooking) {
+		return bookingDao.readById(idBooking);
 	}
 
 	public BookingDAO getBookingDao() {
@@ -49,8 +51,16 @@ public class BookingServiceImpl implements BookingService {
 
 	@Override
 	public List<Booking> findByDate(Date fechaInicio, Date fechaFin) {
-		
-		return bookingDao.findByDate(fechaInicio, fechaFin);
+		List<Booking> listado = bookingDao.findAll();
+		List<Booking> reservas = new ArrayList<>();
+		for (Booking booking : listado) {
+			if(booking.getBookingdate().before(fechaFin)&&booking.getBookingdate().after(fechaInicio)){
+				reservas.add(booking);
+				System.out.println(booking);
+			}
+		}
+		return reservas;
+
 	}
 	
 	

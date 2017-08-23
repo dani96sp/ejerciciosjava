@@ -17,7 +17,6 @@ public interface BookingDAO {
 	
 	void delete(Booking booking);
 	
-	List<Booking> findAll();
-		
+	List<Booking> findAll();		
 
 }

@@ -77,5 +77,13 @@ public class ParkingPlaceDAOJPAImpl implements ParkingPlaceDAO{
 		return query.getResultList();
 	}
 	
+	@Override
+	public List<Parkingplace> findNotFreeParkingPlaces() {
+		
+		Query query = em.createNamedQuery("Parkingplace.findNotFreePlaces");		
+		
+		return query.getResultList();
+	}
+	
 
 }

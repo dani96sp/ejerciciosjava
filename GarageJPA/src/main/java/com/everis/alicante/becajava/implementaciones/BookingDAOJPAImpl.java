@@ -54,15 +54,16 @@ public class BookingDAOJPAImpl implements BookingDAO{
 		return query.getResultList();
 		
 	}
+	
 
 	@Override
 	public List<Booking> findByDate(Date fechaInicio, Date fechaFin) {
 		
 //		Query query=em.createNativeQuery("select idBooking, bookingDate, idParkingPlace, idClient, idVehicle from booking where bookingDate >=" + fechaInicio + " && bookingDate <=" + fechaFin);
-		Query query=em.createNativeQuery("select idBooking, bookingDate, idParkingPlace, idClient, idVehicle from booking where bookingDate > ? && bookingDate < ?");
+//		Query query=em.createNativeQuery("select idBooking, bookingDate, idParkingPlace, idClient, idVehicle from booking where bookingDate > ? && bookingDate < ?");
+		Query query=em.createNativeQuery("select b from booking b where bookingDate > ? && bookingDate < ?");
 		query.setParameter(1, fechaInicio);
 		query.setParameter(2, fechaFin);
-
 		return query.getResultList();
 	}
 	

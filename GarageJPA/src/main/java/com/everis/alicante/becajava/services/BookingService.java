@@ -14,8 +14,8 @@ public interface BookingService {
 	
 	List<Booking>list();
 	
-	Booking findBooking(String field);
-
 	void create(Booking booking);
+
+	Booking findBookingById(int idBooking);
 
 }

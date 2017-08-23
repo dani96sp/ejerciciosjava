@@ -129,8 +129,14 @@ public class Client implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Client [idclient=" + idclient + ", name=" + name + ", nif=" + nif + ", surname=" + surname
-				+ ", telephone=" + telephone + ", bookings=" + bookings + ", vehicles=" + vehicles+ "]";
+		return "[" + "ID[" + idclient + "] Nombre[" + name + "] NIF[" + nif + "] Apellidos[" + surname
+				+ "] TLF[" + telephone + "] Reservas[" + bookings + "] Vehiculos[" + vehicles+ "]";
+	}
+	
+	public String toTable() {
+		return "</td></tr><tr><td>" + idclient + " </td><td>" + name + "</td><td> " + surname
+				+ "</td><td>" + nif + "</td><td>"  +  telephone + "</td><td>"  +  bookings + "</td><td>"  + vehicles+ "</td><td>" 
+				+ "<a href='dispatcher2?idReserva="+this.getIdclient()+"'><button>EDITAR</button></a>" + "</td><td>" + "<a href='dispatcher2?idReserva="+this.getIdclient()+"'><button>ELIMINAR</button></a>";
 	}
 
 }

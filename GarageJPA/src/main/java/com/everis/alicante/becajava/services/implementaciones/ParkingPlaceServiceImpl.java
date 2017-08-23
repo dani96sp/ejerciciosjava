@@ -35,6 +35,12 @@ public class ParkingPlaceServiceImpl implements ParkingPlaceService {
 		return parkingPlaceDao.findFreeParkingPlaces();
 	}
 	
+	@Override
+	public List<Parkingplace> listNotFreePlaces() {
+		
+		return parkingPlaceDao.findNotFreeParkingPlaces();
+	}
+	
 	
 	
 }

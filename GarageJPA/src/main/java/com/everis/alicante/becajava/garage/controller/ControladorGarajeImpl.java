@@ -52,6 +52,11 @@ public class ControladorGarajeImpl implements ControladorGaraje{
 	public List<Parkingplace> listarPlazasLibres() {
 		
 		return parkingService.listFreePlaces();
+	}	@Override
+	
+	public List<Parkingplace> listarPlazasOcupadas() {
+		
+		return parkingService.listNotFreePlaces();
 	}
 
 
@@ -103,7 +108,6 @@ public class ControladorGarajeImpl implements ControladorGaraje{
 
 	@Override
 	public List<Booking> listarReservasByFecha(Date fechaInicio, Date fechaFin) {
-		// EN CONSTRUCCION
 		return this.bookingService.findByDate(fechaInicio, fechaFin);
 	}
 
@@ -129,6 +133,11 @@ public class ControladorGarajeImpl implements ControladorGaraje{
 		System.out.println("El cliente : " + client.getName()+" debe : "+serviceClient.getImporteByClient(client) +"EUR");
 		
 		return serviceClient.getImporteByClient(client);
+	}
+
+	@Override
+	public Booking listarReserva(int idBooking) {
+		return this.bookingService.findBookingById(idBooking);
 	}
 
 
