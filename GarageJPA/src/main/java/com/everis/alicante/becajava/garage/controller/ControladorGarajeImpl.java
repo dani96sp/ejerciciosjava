@@ -140,10 +140,31 @@ public class ControladorGarajeImpl implements ControladorGaraje{
 		return this.bookingService.findBookingById(idBooking);
 	}
 
-
-
-
+	@Override
+	public void modificarCliente(int idClient) {
+		Client client = this.findClient(idClient);
 		
+		this.serviceClient.updateCliente(client);
+	}
 
+	@Override
+	public Client findClient(int idClient) {
+		return this.serviceClient.readClientById(idClient);
+	}
 
+	
+	@Override
+	public void modificarReserva(int idBooking) {
+		Booking booking = this.listarReserva(idBooking);
+		this.bookingService.updateBooking(booking);
+	}
+
+	@Override
+	public void eliminarReserva(int idBooking) {
+		Booking booking = this.listarReserva(idBooking);
+		
+		this.bookingService.deleteBooking(booking);
+	}
+	
+	
 }

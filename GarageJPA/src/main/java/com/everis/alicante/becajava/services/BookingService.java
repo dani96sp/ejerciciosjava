@@ -18,4 +18,9 @@ public interface BookingService {
 
 	Booking findBookingById(int idBooking);
 
+	void updateBooking(Booking booking);
+	
+	void deleteBooking(Booking booking);
+
+	
 }

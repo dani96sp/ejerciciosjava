@@ -44,7 +44,7 @@ public class VehicleDAOJPAImpl implements VehicleDAO{
 	@Override
 	public void delete(Vehicle vehicle) {
 		
-		em.getTransaction().commit();
+		em.getTransaction().begin();
 		em.remove(vehicle);
 		em.getTransaction().commit();
 	}

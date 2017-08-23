@@ -36,7 +36,7 @@ public class BookingDAOJPAImpl implements BookingDAO{
 
 	@Override
 	public void delete(Booking Booking) {
-		em.getTransaction().commit();
+		em.getTransaction().begin();
 		em.remove(Booking);
 		em.getTransaction().commit();
 	}

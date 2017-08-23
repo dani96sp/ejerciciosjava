@@ -10,10 +10,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>GARAGE MANAGMENT APP</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
+<%@include file="menu.jsp" %>
+
+<div>
 	
-	LISTA DE PLAZAS </br>
+	
+	<h1>LISTA DE PLAZAS OCUPADAS</h1>
 	 
 	<%	List<Parkingplace> plazas = (List) request.getAttribute("plazasOcup");
 	
@@ -23,35 +28,6 @@
 	    }
     
      %>
-
-	<table border="true">
-	  <% out.println("<br/>");
-	 	
-		out.print("<tr>");
-		for(Parkingplace plaza: plazas){
-		
-	    	out.println("<td>"+plaza  + "</td>");
-	    }
-		out.print("</tr>");
-		
-		%>
-	</table>
-	
-	<!-- Ahora con taglibs --> 
-	
-	</br>
-	</br>
-	
-	<div>
-	
-	<c:forEach items="${plazas}" var="plaza">
-	
-		<c:out value="${plaza}"></c:out>
-		</br>
-	
-	</c:forEach>
-	
 	</div>
-	
 </body>
 </html>

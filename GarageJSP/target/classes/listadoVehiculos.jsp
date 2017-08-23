@@ -11,10 +11,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>GARAGE MANAGMENT APP</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
+	<%@include file="menu.jsp" %>
 
-	LISTA DE VEHICULOS
+	<h1>LISTA DE VEHICULOS</h1>
+	
 	</br>
 
 	<%	List<Vehicle> vehicles = (List) request.getAttribute("vehiculos");

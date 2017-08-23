@@ -42,7 +42,7 @@ public class ParkingPlaceDAOJPAImpl implements ParkingPlaceDAO{
 	@Override
 	public void delete(Parkingplace parkingplace) {
 		
-		em.getTransaction().commit();
+		em.getTransaction().begin();
 		em.remove(parkingplace);
 		em.getTransaction().commit();
 	}

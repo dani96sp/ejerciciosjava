@@ -12,6 +12,7 @@
 <body>
 
 	<form method="post" action="/GarageJSP/dispatcher"> 
+	<input type="hidden" name="tipo" value="reservar"/>
 	
 	<h4>Nombre del Cliente:</h1>
 		

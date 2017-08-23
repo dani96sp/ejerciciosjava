@@ -8,8 +8,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>GARAGE MANAGMENT APP</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
+	<%@include file="menu.jsp" %>
+<h1>RESERVAR UNA PLAZA</h1>
+<br/>
+	<div>
 
 	<form method="post" action="/GarageJSP/dispatcher"> 
 	<input type="hidden" name="tipo" value="reservar"/>
@@ -57,9 +62,11 @@
 	<br/>
 	<br/>
 	<input type="submit" value="Reservar" />
-	
-	
 	</form>
+	
+	</div>
+<div>
 
+</div>
 </body>
 </html>

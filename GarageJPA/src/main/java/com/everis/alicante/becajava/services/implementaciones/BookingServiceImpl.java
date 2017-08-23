@@ -62,6 +62,16 @@ public class BookingServiceImpl implements BookingService {
 		return reservas;
 
 	}
+
+	@Override
+	public void updateBooking(Booking booking) {
+		bookingDao.update(booking);
+	}
+
+	@Override
+	public void deleteBooking(Booking booking) {
+		bookingDao.delete(booking);
+	}
 	
 	
 

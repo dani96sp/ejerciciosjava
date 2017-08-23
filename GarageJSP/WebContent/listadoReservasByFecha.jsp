@@ -10,8 +10,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>GARAGE MANAGMENT APP</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
+	<%@include file="menu.jsp" %>
+	<h1>LISTAR RESERVAS POR FECHA</h1>
+	 <br/>
 		<form method="post" action="/GarageJSP/dispatcher"> 
 	<input type="hidden" name="tipo" value="listar"/>
 	

@@ -16,6 +16,24 @@
 		<url-pattern>/dispatcher</url-pattern>
 	</servlet-mapping>
 	
-
-
+   <servlet>
+        <servlet-name>DispatcherReserva</servlet-name>
+		<servlet-class>com.everis.alicante.becajava.servlets.DispatcherReserva</servlet-class>
+    </servlet>  
+	
+	<servlet-mapping>
+		<servlet-name>DispatcherReserva</servlet-name>
+		<url-pattern>/dispatcher2</url-pattern>
+	</servlet-mapping>
+		   
+   <servlet>
+        <servlet-name>DispatcherReservaBorrar</servlet-name>
+		<servlet-class>com.everis.alicante.becajava.servlets.DispatcherReservaBorrar</servlet-class>
+    </servlet>  
+	
+	<servlet-mapping>
+		<servlet-name>DispatcherReservaBorrar</servlet-name>
+		<url-pattern>/dispatcherReservaBorrar</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

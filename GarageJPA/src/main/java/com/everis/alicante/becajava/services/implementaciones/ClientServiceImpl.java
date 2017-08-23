@@ -57,6 +57,11 @@ public class ClientServiceImpl implements ClientService {
 		return this.clientDao.findImporteByClient(client);
 	}
 
+	@Override
+	public Client readClientById(int client) {
+		return clientDao.readById(client);
+	}
+
 	
 	
 	

@@ -9,17 +9,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <title>GARAGE MANAGMENT APP</title>
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
 </head>
 <body>
-	<%	Booking reserva = (Booking) request.getAttribute("reserva");
-	out.print(" " +reserva);
+	<%@include file="menu.jsp" %>
+
 	
-	
+	<%	Booking reserva = (Booking) request.getAttribute("reserva");	
 %>
-	<form method="post" action="/GarageJSP/dispatcher2"> 
-	<input type="hidden" name="tipo" value="modificar"/>
-	<input type="hidden" name="tipo" value="${reserva.getVehicle().getVehiclemodel()}"/>
-	<input type="hidden" name="idReserva" value="${reserva.getIdbooking()}"/>
+	<form method="post" action="/GarageJSP/dispatcherReserva"> 
+	<input type="hidden" name="vehicleModel" value="${reserva.getVehicle().getVehiclemodel()}"/>
+	<input type="hidden" name="idReserva" value="${reserva.getIdbooking()}"/>	
 	
 	<h4>Nombre del Cliente:</h1>
 		

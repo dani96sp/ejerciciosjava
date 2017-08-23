@@ -23,7 +23,7 @@ import com.everis.alicante.becajava.garage.GarageMain;
 
 public class Dispatcher extends HttpServlet{
 	static int option;
-	static int idReserva;
+	static int idVehicle;
 	/**
 	 * 
 	 */
@@ -39,80 +39,119 @@ public class Dispatcher extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
-		option=Integer.parseInt(req.getParameter("option"));
-
-		System.out.println("##option"+ option);
-		
 		ControladorGaraje controlador= new ControladorGarajeImpl();
-		
-		switch (option) {
-		case 1:	
-			List<Parkingplace> plazas = controlador.listarPlazasLibres();		
-			req.setAttribute("plazas", plazas);	
-			RequestDispatcher dispatcher = req.getRequestDispatcher("listadoPlazas.jsp");
-			dispatcher.forward(req, resp);
-			break;
-		case 2:	
-			List<Parkingplace> plazasOcup = controlador.listarPlazasOcupadas();		
-			req.setAttribute("plazasOcup", plazasOcup);	
-			RequestDispatcher dispatcher2 = req.getRequestDispatcher("listadoPlazasOcup.jsp");
-			dispatcher2.forward(req, resp);
-			break;
-		
-		case 3 :
-			List<Parkingplace> plazasLibres = controlador.listarPlazasLibres();		
-			
-			List<String> coches= new ArrayList<>();
-			coches.add("Abarth");
-			coches.add("Alfa Romeo");		
-			
-			req.setAttribute("plazas", plazasLibres);	
-			req.setAttribute("coches", coches);
-			
-			RequestDispatcher dispatcher3 = req.getRequestDispatcher("altaReserva.jsp");
-			dispatcher3.forward(req, resp);
 
-		case 4:
-			List<Client> clients = controlador.listarClientes();
-			req.setAttribute("clientes", clients);
-			RequestDispatcher dispatcher4 = req.getRequestDispatcher("listadoClientes.jsp");
-			dispatcher4.forward(req, resp);
-			break;
+		if(req.getParameter("option") != null) {
+			option=Integer.parseInt(req.getParameter("option"));
+	
+			System.out.println("##option"+ option);
 			
-		case 5 :
-			List<Booking> reservas=controlador.listarReservas();
-			req.setAttribute("reservas", reservas);			
-			RequestDispatcher dispatcher5 = req.getRequestDispatcher("listadoReservas.jsp");
-			dispatcher5.forward(req, resp);
 			
-			break;
+			switch (option) {
+			case 1:	
+				List<Parkingplace> plazas = controlador.listarPlazasLibres();		
+				req.setAttribute("plazas", plazas);	
+				RequestDispatcher dispatcher = req.getRequestDispatcher("listadoPlazas.jsp");
+				dispatcher.forward(req, resp);
+				break;
+			case 2:	
+				List<Parkingplace> plazasOcup = controlador.listarPlazasOcupadas();		
+				req.setAttribute("plazasOcup", plazasOcup);	
+				RequestDispatcher dispatcher2 = req.getRequestDispatcher("listadoPlazasOcup.jsp");
+				dispatcher2.forward(req, resp);
+				break;
+			
+			case 3 :
+				List<Parkingplace> plazasLibres = controlador.listarPlazasLibres();		
+				
+				List<String> coches= new ArrayList<>();
+				coches.add("Abarth");
+				coches.add("Alfa Romeo");		
+				
+				req.setAttribute("plazas", plazasLibres);	
+				req.setAttribute("coches", coches);
+				
+				RequestDispatcher dispatcher3 = req.getRequestDispatcher("altaReserva.jsp");
+				dispatcher3.forward(req, resp);
+	
+			case 4:
+				List<Client> clients = controlador.listarClientes();
+				req.setAttribute("clientes", clients);
+				RequestDispatcher dispatcher4 = req.getRequestDispatcher("listadoClientes.jsp");
+				dispatcher4.forward(req, resp);
+				break;
+				
+			case 5 :
+				List<Booking> reservas=controlador.listarReservas();
+				req.setAttribute("reservas", reservas);			
+				RequestDispatcher dispatcher5 = req.getRequestDispatcher("listadoReservas.jsp");
+				dispatcher5.forward(req, resp);
+				
+				break;
+	
+			case 6:
+				List<Vehicle> vehicles = controlador.listarVehiculos();
+				req.setAttribute("vehiculos", vehicles);
+				RequestDispatcher dispatcher6 = req.getRequestDispatcher("listadoVehiculos.jsp");
+				dispatcher6.forward(req, resp);
+				break;
+				
+			case 7:		
+				RequestDispatcher dispatcher7 = req.getRequestDispatcher("listadoReservasByFecha.jsp");
+				dispatcher7.forward(req, resp);
+				break;
+				
+			default:
+				break;
+			}
+	}
+		
+		if(req.getParameter("idVehicle") != null) {
+			idVehicle=Integer.parseInt(req.getParameter("idVehicle"));
 
-		case 6:
-			List<Vehicle> vehicles = controlador.listarVehiculos();
-			req.setAttribute("vehiculos", vehicles);
-			RequestDispatcher dispatcher6 = req.getRequestDispatcher("listadoVehiculos.jsp");
-			dispatcher6.forward(req, resp);
-			break;
+			//alta de reservas
+			String tipo=req.getParameter("tipo");
+			String model=req.getParameter("model");
+			String plate=req.getParameter("plate");
+			String nif=req.getParameter("client");
 			
-		case 7:		
-			RequestDispatcher dispatcher7 = req.getRequestDispatcher("listadoReservasByFecha.jsp");
-			dispatcher7.forward(req, resp);
-			break;
+			if(false) {
+				req.setAttribute("message", "Ha ocurrido un error");
+				RequestDispatcher disp = req.getRequestDispatcher("altaReserva.jsp");
+				disp.forward(req, resp);
+				
+			}else {			
+				Vehicle vehicle= new Vehicle();
+				vehicle.setVehiclemodel(model);
+				vehicle.setVehicleplate(plate);
+				
+				Set<Vehicle> vehicles= new HashSet<>();
+				vehicles.add(vehicle);
+				
+				Client client= new Client();
+				client.setName(name);
+				client.setSurname(surname);
+				client.setNif(nif);
+				client.setTelephone(tlf);
+				client.setVehicles(vehicles);
+				
+				vehicle.setClient(client);
+		
+				controlador.modificarCliente(idClient);
+				
 			
-		default:
-			break;
+				resp.sendRedirect("menu.jsp");
+			}
 		}
 		
 		
-		if (idReserva != 0) {
-			
-			Booking reserva=controlador.listarReserva(idReserva);
-			req.setAttribute("reserva", reserva);			
-			
-			RequestDispatcher dispatcher = req.getRequestDispatcher("editarReserva.jsp");
-			dispatcher.forward(req, resp);
-		}
+//		if (idReserva != 0) {
+//			
+//			Booking reserva=controlador.listarReserva(idReserva);
+//			req.setAttribute("reserva", reserva);			
+//			RequestDispatcher dispatcher = req.getRequestDispatcher("editarReserva.jsp");
+//			dispatcher.forward(req, resp);
+//		}
 	
 		
 	}
