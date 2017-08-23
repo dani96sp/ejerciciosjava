@@ -89,7 +89,7 @@ public class Booking implements Serializable {
 	}
 	
 	public String toTable() {
-		return "</td></tr><tr><td>" + bookingdate + " </td><td>" + client.getName() + "</td><td> " + parkingplace.getParkingnumber()
+		return "</td></tr><tr><td>" + bookingdate + " </td><td>" + client.getName() + " " + client.getSurname() + "</td><td> " + parkingplace.getParkingnumber()
 				+ "</td><td>" + vehicle.getVehicleplate() + "</td><td>"  + "<a href='dispatcher2?idReserva="+this.getIdbooking()+"'><button>MODIFICAR</button></a>"
 				+ "</td><td>"  + "<a href='dispatcher2?idReserva="+this.getIdbooking()+"'><button>ELIMINAR</button></a>";
 

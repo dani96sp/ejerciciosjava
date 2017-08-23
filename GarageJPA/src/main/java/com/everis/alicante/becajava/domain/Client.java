@@ -135,8 +135,8 @@ public class Client implements Serializable {
 	
 	public String toTable() {
 		return "</td></tr><tr><td>" + idclient + " </td><td>" + name + "</td><td> " + surname
-				+ "</td><td>" + nif + "</td><td>"  +  telephone + "</td><td>"  +  bookings + "</td><td>"  + vehicles+ "</td><td>" 
-				+ "<a href='dispatcher2?idReserva="+this.getIdclient()+"'><button>EDITAR</button></a>" + "</td><td>" + "<a href='dispatcher2?idReserva="+this.getIdclient()+"'><button>ELIMINAR</button></a>";
+				+ "</td><td>" + nif + "</td><td>"  +  telephone + "</td><td>"  +  bookings + "</td><td>"  + vehicles + "</td><td>" 
+				+ "<a href='dispatcher2?idReserva="+this.getIdclient()+"'><button>MODIFICAR</button></a>" + "</td><td>" + "<a href='dispatcher2?idReserva="+this.getIdclient()+"'><button>ELIMINAR</button></a>";
 	}
 
 }

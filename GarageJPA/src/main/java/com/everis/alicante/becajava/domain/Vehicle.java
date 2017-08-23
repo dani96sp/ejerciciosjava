@@ -96,5 +96,11 @@ public class Vehicle implements Serializable {
 	public String toString() {
 		return "[" + "ID[" + idvehicle + "] Modelo[" + vehiclemodel + "] Matricula[" + vehicleplate + "]";
 	}
+	
+	public String toTable() {
+		return "</td></tr><tr><td>" + idvehicle + " </td><td>" + vehiclemodel + "</td><td> " + vehicleplate
+				+ "</td><td>" + this.getClient().getName() + " " + this.getClient().getSurname() + "</td><td>"  + "<a href='dispatcher2?idReserva="+this.getIdvehicle()+"'><button>MODIFICAR</button></a>"
+				+ "</td><td>"  + "<a href='dispatcher2?idReserva="+this.getIdvehicle()+"'><button>ELIMINAR</button></a>";
 
+	}
 }

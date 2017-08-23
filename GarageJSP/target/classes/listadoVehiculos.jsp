@@ -18,41 +18,29 @@
 	</br>
 
 	<%	List<Vehicle> vehicles = (List) request.getAttribute("vehiculos");
-	
-	 	out.println("<br/>");
-		for(Vehicle vehicle : vehicles){
-	    	out.println(vehicle + "<br/>");
-	    }
-    
      %>
 
+
+<div>
+
 	<table border="true">
-		<% out.println("<br/>");
-	 	
-		out.print("<tr>");
-		for(Vehicle vehicle : vehicles){
+	<tr id='titulo'>
+	<td><b>ID</b></td>
+	<td><b>Modelo</b></td>
+	<td><b>Matricula</b></td>
+	<td><b>Cliente</b></td>
+	<td id='modificar'><b>Modificar</b></td>
+	<td id='eliminar'><b>Eliminar</b></td>
+	  <% 
+		for(Vehicle vehicle: vehicles){
 		
-	    	out.println("<td>"+ vehicle  + "</td>");
+	    	out.println(vehicle.toTable());
 	    }
-		out.print("</tr>");
 		
 		%>
+		
+	</td></tr>
 	</table>
-
-	<!-- Ahora con taglibs -->
-
-	</br>
-	</br>
-
-	<div>
-
-		<c:forEach items="${vehicles}" var="vehicle">
-
-			<c:out value="${vehicle}"></c:out>
-			</br>
-
-		</c:forEach>
-
 	</div>
 
 </body>
